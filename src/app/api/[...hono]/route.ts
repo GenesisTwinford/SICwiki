@@ -1,3 +1,5 @@
+// 受付窓口、処理の振り分け
+
 import { app } from "@/server/hono";
 
 export const runtime = "edge";

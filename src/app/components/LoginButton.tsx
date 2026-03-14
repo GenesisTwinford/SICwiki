@@ -11,7 +11,7 @@ export default function LoginButton() {
     return <button disabled>読み込み中...</button>;
   }
 
-  // ログインしていない
+  // ログインしてない
   if (!session) {
     return (
       <div className="flex gap-2">
@@ -31,7 +31,7 @@ export default function LoginButton() {
     );
   }
 
-  // ログインしている
+  // ログインしてる
   return (
     <div className="flex items-center gap-2">
       <span>こんにちは、{session.user.name || session.user.email}さん</span>
