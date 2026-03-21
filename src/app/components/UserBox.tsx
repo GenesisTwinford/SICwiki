@@ -5,8 +5,17 @@ import { authClient } from "@/lib/auth-client";
 export default function UserBox() {
   const { data: session, isPending } = authClient.useSession();
 
-  if (isPending) return <p>読み込み中...</p>;
-  if (!session) return <p>未ログイン</p>;
+  if (isPending) {
+    return <p className="text-sm text-slate-500">セッションを確認しています...</p>;
+  }
 
-  return <p>{session.user.name} としてログイン中</p>;
+  if (!session) {
+    return <p className="text-sm text-slate-600">ログインすると学習状況を保存できます。</p>;
+  }
+
+  return (
+    <p className="text-sm text-slate-700">
+      {session.user.name || session.user.email} としてログイン中です。
+    </p>
+  );
 }
