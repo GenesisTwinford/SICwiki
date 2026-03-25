@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { HomeCourseNode } from "@/server/app/home-data";
+import type { HomeCourseNode } from "@/features/home/server";
 
 type CourseTreeProps = {
   nodes: HomeCourseNode[];

@@ -1,6 +1,6 @@
 "use client";
 
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/features/auth/client";
 
 export default function UserBox() {
   const { data: session, isPending } = authClient.useSession();

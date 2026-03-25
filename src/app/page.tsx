@@ -1,9 +1,9 @@
 import LoginButton from "@/app/components/LoginButton";
 import UserBox from "@/app/components/UserBox";
 import CourseTree from "@/app/components/CourseTree";
-import { ensureAppUser } from "@/server/app/app-user";
-import { getAuthSession } from "@/server/app/auth-session";
-import { getHomeData } from "@/server/app/home-data";
+import { getAuthSession } from "@/features/auth/session";
+import { getHomeData } from "@/features/home/server";
+import { ensureAppUser } from "@/features/users/server";
 
 function StatCard({
   label,
@@ -43,16 +43,6 @@ export default async function Home() {
           <div className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)_280px]">
             <aside className="space-y-4 rounded-[28px] bg-slate-950 p-6 text-white">
               <div className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-sky-200">
-                  SIC Wiki
-                </p>
-                <h1 className="text-3xl font-semibold leading-tight">
-                  学ぶ道筋を
-                  <br />
-                  見失わないための
-                  <br />
-                  学習ホーム
-                </h1>
                 <p className="text-sm leading-6 text-slate-300">
                   コース全体像と現在の進み具合を、1画面で追えるようにした MVP の骨組みです。
                 </p>
@@ -77,16 +67,9 @@ export default async function Home() {
 
             <section className="space-y-5">
               <div className="rounded-[28px] border border-black/10 bg-white/80 p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-black/45">
-                  Courses
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold text-slate-950">
-                  目的の記事まで、木構造でたどる
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  今はトップの 3 カラム骨組みを先に作っています。DB にコースと採用記事が入ると、
-                  ここがそのまま実データ表示に切り替わります。
-                </p>
+                <h1 className="mt-2 text-2xl font-semibold text-slate-950">
+                    SIC Wiki
+                </h1>
               </div>
 
               <CourseTree nodes={homeData.courseTree} />
@@ -105,7 +88,7 @@ export default async function Home() {
                 hint={
                   homeData.stats.dailyAchieved
                     ? "今日のタスクは達成済みです。"
-                    : "3 問以上の採点でデイリー達成になります。"
+                    : "3問正解でデイリー達成になります。"
                 }
               />
               <StatCard

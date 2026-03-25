@@ -1,9 +1,9 @@
 import { eq } from "drizzle-orm";
 import { db } from "@/server/db";
-import { createAppId, slugify } from "@/server/app/ids";
+import { createAppId, slugify } from "@/features/users/id";
 import { appUser, profile, type SelectAppUser } from "@/server/db/schema";
 
-type AuthSession = Awaited<ReturnType<typeof import("@/server/app/auth-session").getAuthSession>>;
+type AuthSession = Awaited<ReturnType<typeof import("@/features/auth/session").getAuthSession>>;
 
 async function findAvailableSlug(baseSlug: string) {
   const taken = await db
@@ -74,15 +74,11 @@ export async function ensureAppUser(session: AuthSession) {
 
   await db.insert(profile).values({
     userId,
-    bio: "これから学習履歴を育てていきます。",
-    learningGoal: "MVP を触りながら、理解できる記事を増やす。",
+    bio: "プロフィールはこれから整えていきます。",
+    learningGoal: "まずはMVPを触りながら、学習の流れを確認していきます。",
   });
 
-  const created = await db
-    .select()
-    .from(appUser)
-    .where(eq(appUser.id, userId))
-    .limit(1);
+  const created = await db.select().from(appUser).where(eq(appUser.id, userId)).limit(1);
 
   return created[0] ?? null;
 }

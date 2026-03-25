@@ -1,5 +1,5 @@
 import { headers } from "next/headers";
-import { auth } from "@/server/auth";
+import { auth } from "@/features/auth/server";
 
 export async function getAuthSession() {
   const requestHeaders = await headers();

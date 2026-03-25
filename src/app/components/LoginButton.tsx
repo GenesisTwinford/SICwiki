@@ -1,6 +1,6 @@
 "use client";
 
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/features/auth/client";
 import { useRouter } from "next/navigation";
 
 export default function LoginButton() {
