@@ -1,11 +1,10 @@
 import { and, desc, eq, inArray } from "drizzle-orm";
 import { db } from "@/server/db";
-import {
-  course,
-  courseArticleAdoption,
-  dailyTaskProgress,
-  friendActivityRank,
-} from "@/server/db/schema";
+import {course,
+        courseArticleAdoption,
+        dailyTaskProgress,
+        friendActivityRank,
+        } from "@/server/db/schema";
 
 export type HomeCourseNode = {
   id: string;
