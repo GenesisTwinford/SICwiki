@@ -1,3 +1,6 @@
+// ホーム画面で表示するデータをDBから取り出し、親子構造を持たせるなど整えた上で、フロントに返している。
+// データが取れないときのための予備も用意しておく。
+
 import { and, desc, eq, inArray } from "drizzle-orm";
 import { db } from "@/server/db";
 import {course,

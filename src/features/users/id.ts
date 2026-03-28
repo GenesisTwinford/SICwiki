@@ -1,3 +1,6 @@
+// ユーザーを作るときに必要なIDやURL用の名前等を作る。
+// 主に新しいユーザーを作る瞬間にはたらく。
+
 const CROCKFORD_BASE32 = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
 
 function encodeTime(time: number, length: number) {
@@ -23,6 +26,7 @@ export function createAppId() {
   return `${timePart}${randomPart}`;
 }
 
+// たとえば「Taro Yamada」を taro-yamada のに整形。
 export function slugify(value: string) {
   const normalized = value
     .trim()

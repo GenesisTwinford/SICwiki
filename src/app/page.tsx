@@ -1,3 +1,5 @@
+// serverから受け取った情報を整理し、appに流す。
+
 import LoginButton from "@/app/components/LoginButton";
 import UserBox from "@/app/components/UserBox";
 import CourseTree from "@/app/components/CourseTree";

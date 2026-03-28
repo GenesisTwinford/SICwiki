@@ -1,3 +1,5 @@
+// server/内でDBのテーブルを定義 → ここで必要な情報を整理 → フロントで表示。
+
 import { eq } from "drizzle-orm";
 import { db } from "@/server/db";
 import { createAppId, slugify } from "@/features/users/id";
