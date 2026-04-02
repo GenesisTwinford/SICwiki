@@ -1,5 +1,3 @@
-// server/内でDBのテーブルを定義 → ここで必要な情報を整理 → フロントで表示。
-
 import { eq } from "drizzle-orm";
 import { db } from "@/server/db";
 import { createAppId, slugify } from "@/features/users/id";
@@ -77,7 +75,7 @@ export async function ensureAppUser(session: AuthSession) {
   await db.insert(profile).values({
     userId,
     bio: "プロフィールはこれから整えていきます。",
-    learningGoal: "まずはMVPを触りながら、学習の流れを確認していきます。",
+    learningGoal: "まずは MVP を試しながら、学習の流れを確認していきます。",
   });
 
   const created = await db.select().from(appUser).where(eq(appUser.id, userId)).limit(1);

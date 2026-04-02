@@ -52,13 +52,13 @@ export default function SignUpPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-200">
             Sign Up
           </p>
-          <h1 className="mt-4 text-4xl font-semibold leading-tight">
-            学びの地図を、
+          <h1 className="mt-4 font-heading text-4xl font-semibold leading-tight">
+            学びの土台を、
             <br />
-            自分の手元に置く
+            自分の名前で整える
           </h1>
           <p className="mt-4 max-w-md text-sm leading-7 text-emerald-100/85">
-            登録すると、公開用 slug を持つアプリユーザーを自動で作成し、マイページや学習統計の土台に使います。
+            登録すると、公開プロフィール用の slug を準備して、マイページや学習記録の表示に使えるようになります。
           </p>
         </section>
 
@@ -138,10 +138,7 @@ export default function SignUpPage() {
               </div>
 
               <div>
-                <label
-                  htmlFor="password"
-                  className="mb-1 block text-sm font-medium text-slate-700"
-                >
+                <label htmlFor="password" className="mb-1 block text-sm font-medium text-slate-700">
                   パスワード
                 </label>
                 <input

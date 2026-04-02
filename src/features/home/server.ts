@@ -1,13 +1,11 @@
-// ホーム画面で表示するデータをDBから取り出し、親子構造を持たせるなど整えた上で、フロントに返している。
-// データが取れないときのための予備も用意しておく。
-
 import { and, desc, eq, inArray } from "drizzle-orm";
 import { db } from "@/server/db";
-import {course,
-        courseArticleAdoption,
-        dailyTaskProgress,
-        friendActivityRank,
-        } from "@/server/db/schema";
+import {
+  course,
+  courseArticleAdoption,
+  dailyTaskProgress,
+  friendActivityRank,
+} from "@/server/db/schema";
 
 export type HomeCourseNode = {
   id: string;
@@ -80,14 +78,14 @@ const fallbackCourseTree: HomeCourseNode[] = [
   },
   {
     id: "course-root-web",
-    name: "Web 開発",
+    name: "Web 基礎",
     slug: "web-development",
     isLeaf: false,
     articleId: null,
     children: [
       {
         id: "course-leaf-http",
-        name: "HTTP の基礎",
+        name: "HTTP の基本",
         slug: "http-basics",
         isLeaf: true,
         articleId: "sample-article-http",
@@ -222,7 +220,7 @@ export async function getHomeData(appUserId?: string | null) {
     }
 
     return {
-      courseTree: attachChildren(null),
+      courseTree: courses.length > 0 ? attachChildren(null) : fallbackCourseTree,
       stats,
       usedFallback: courses.length === 0,
     };

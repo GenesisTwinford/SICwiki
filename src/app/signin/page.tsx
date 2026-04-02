@@ -48,10 +48,10 @@ export default function SignInPage() {
       <div className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-5xl items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
         <section className="rounded-[32px] bg-slate-950 p-8 text-white shadow-[0_25px_70px_-30px_rgba(15,23,42,0.7)] sm:p-10">
           <p className="text-xs font-semibold uppercase tracking-[0.32em] text-sky-200">Sign In</p>
-          <h1 className="mt-4 text-4xl font-semibold leading-tight">
-            学習のつづきを、
+          <h1 className="mt-4 font-heading text-4xl font-semibold leading-tight">
+            学びの続きに、
             <br />
-            すぐ再開する
+            すぐ戻れるようにする
           </h1>
           <p className="mt-4 max-w-md text-sm leading-7 text-slate-300">
             ログインすると、学習の進み具合や公開プロフィール用のユーザー情報をアプリ側に同期します。
@@ -119,10 +119,7 @@ export default function SignInPage() {
               </div>
 
               <div>
-                <label
-                  htmlFor="password"
-                  className="mb-1 block text-sm font-medium text-slate-700"
-                >
+                <label htmlFor="password" className="mb-1 block text-sm font-medium text-slate-700">
                   パスワード
                 </label>
                 <input

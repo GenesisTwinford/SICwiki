@@ -39,9 +39,7 @@ export default function LoginButton() {
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <span className="text-sm text-slate-600">
-        {session.user.name || session.user.email} さん
-      </span>
+      <span className="text-sm text-slate-600">{session.user.name || session.user.email}</span>
       <button
         className="rounded-full border border-rose-200 px-4 py-2 text-sm font-medium text-rose-700 transition hover:bg-rose-50"
         onClick={async () => {
