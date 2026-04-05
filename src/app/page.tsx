@@ -1,8 +1,8 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import AppShell from "@/app/components/AppShell";
 import CourseTree from "@/app/components/CourseTree";
 import PageIntro from "@/app/components/PageIntro";
-import UserBox from "@/app/components/UserBox";
 import { getAuthSession } from "@/features/auth/session";
 import { getHomeData } from "@/features/home/server";
 import { ensureAppUser } from "@/features/users/server";
@@ -28,6 +28,10 @@ function StatCard({
 export default async function Home() {
   const session = await getAuthSession();
 
+  if (!session?.user) {
+    redirect("/about");
+  }
+
   let syncedUser = null;
 
   try {
@@ -41,40 +45,6 @@ export default async function Home() {
   return (
     <AppShell>
       <div className="space-y-6">
-        <PageIntro
-          eyebrow="Home"
-          title="SIC Wiki の MVP 導線"
-          description="コースをたどって記事詳細へ移動し、そこからプロフィールや編集画面まで一周できる状態を先に固めています。まずは学習の流れが自然につながることを優先します。"
-          aside={
-            <div className="space-y-4">
-              <p className="text-sm leading-6 text-slate-300">
-                今の段階では、見た目の作り込みよりも主要ページがつながることを優先しています。
-              </p>
-              <div className="rounded-3xl bg-white/10 p-4">
-                <p className="font-medium text-sky-100">
-                  {session
-                    ? `ようこそ、${session.user.name || session.user.email} さん`
-                    : "ログインして学習の進み具合を同期できます"}
-                </p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
-                  {syncedUser ? (
-                    <>
-                      公開プロフィールは{" "}
-                      <Link href={`/mypage/${syncedUser.slug}`} className="underline">
-                        /mypage/{syncedUser.slug}
-                      </Link>{" "}
-                      で確認できます。
-                    </>
-                  ) : (
-                    "ログインするとアプリ用プロフィールを自動で準備します。"
-                  )}
-                </p>
-              </div>
-              <UserBox />
-            </div>
-          }
-        />
-
         <section className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_280px]">
           <div className="space-y-5">
             <div className="rounded-[28px] border border-black/10 bg-white/85 p-6 shadow-[0_24px_70px_-45px_rgba(15,23,42,0.35)]">
@@ -103,7 +73,7 @@ export default async function Home() {
 
             {homeData.usedFallback ? (
               <p className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
-                まだ DB にホーム用データが無いため、画面確認用のサンプルコースを表示しています。
+                サイトはプロトタイプなのでバグとかあるかもです。連絡よろです。
               </p>
             ) : null}
           </div>

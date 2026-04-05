@@ -44,7 +44,7 @@ export default function LoginButton() {
         className="rounded-full border border-rose-200 px-4 py-2 text-sm font-medium text-rose-700 transition hover:bg-rose-50"
         onClick={async () => {
           await authClient.signOut();
-          router.push("/");
+          router.push("/about");
         }}
       >
         ログアウト

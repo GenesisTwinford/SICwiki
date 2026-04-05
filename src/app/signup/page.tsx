@@ -39,14 +39,25 @@ export default function SignUpPage() {
     setIsLoading(true);
     setMessage("");
 
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/",
-    });
+    try {
+      const { error } = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+
+      if (error) {
+        setMessage(error.message ?? "Google ログインを開始できませんでした。");
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.error("Failed to start Google sign-in.", error);
+      setMessage("Google ログインの開始時にエラーが発生しました。設定を確認してください。");
+      setIsLoading(false);
+    }
   };
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(180deg,#f0fdf4_0%,#ffffff_50%,#eff6ff_100%)] px-4 py-10">
+    <main className="min-h-screen px-4 py-10">
       <div className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-5xl items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
         <section className="rounded-[32px] bg-emerald-950 p-8 text-white shadow-[0_25px_70px_-30px_rgba(6,78,59,0.7)] sm:p-10">
           <p className="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-200">

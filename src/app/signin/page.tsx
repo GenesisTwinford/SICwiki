@@ -37,10 +37,21 @@ export default function SignInPage() {
     setIsLoading(true);
     setMessage("");
 
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/",
-    });
+    try {
+      const { error } = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+
+      if (error) {
+        setMessage(error.message ?? "Google ログインを開始できませんでした。");
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.error("Failed to start Google sign-in.", error);
+      setMessage("Google ログインの開始時にエラーが発生しました。設定を確認してください。");
+      setIsLoading(false);
+    }
   };
 
   return (

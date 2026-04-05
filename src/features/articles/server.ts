@@ -1,3 +1,5 @@
+// 記事の情報をDBから取得
+
 import { and, asc, eq, inArray } from "drizzle-orm";
 import { db } from "@/server/db";
 import {
