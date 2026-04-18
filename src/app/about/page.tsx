@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { getAuthSession } from "@/features/auth/session";
 
 export const metadata: Metadata = {
   title: "About | SICwiki",
@@ -8,14 +9,14 @@ export const metadata: Metadata = {
 
 const sections = [
   {
-    heading: "SICについて",
+    heading: "SICとは",
     headingLevel: "h1",
     lines: [
       "沖縄にある名桜大学のIT系サークルです。テクノロジーを活用した地方創生に取り組んでいます。",
     ],
   },
   {
-    heading: "これまでの活動実績",
+    heading: "活動実績",
     headingLevel: "h2",
     lines: ["小中学校への出前授業、離島でのスマホ相談会など。", "", "↓詳細はこちら", "令和7年度："],
   },
@@ -24,7 +25,10 @@ const sections = [
 const sectionHeadingClass =
   "border-l-8 border-sky-300 pl-4 text-[28px] font-bold leading-[1.2] md:text-[36px]";
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const session = await getAuthSession();
+  const wikiHref = session?.user ? "/" : "/signin";
+
   return (
     <main className="min-h-screen bg-white text-black">
       <header className="mx-auto flex h-[88px] w-full max-w-[1280px] items-center justify-between px-6 py-6 md:px-16">
@@ -42,7 +46,7 @@ export default function AboutPage() {
         <div className="h-7 w-7 shrink-0 md:hidden" aria-hidden="true" />
         <nav aria-label="SICwiki">
           <Link
-            href="/"
+            href={wikiHref}
             className="inline-flex h-[47px] w-[168px] items-center justify-center rounded-[12px] bg-black px-4 py-3 text-center text-base font-medium leading-[1.45] tracking-[-0.08px] !text-white transition hover:bg-neutral-800"
           >
             SICwikiはこちら！（開発中）
