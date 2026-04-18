@@ -42,3 +42,12 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+a.link-text {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+a.link-text:hover {
+  color: #1d4ed8;
+}

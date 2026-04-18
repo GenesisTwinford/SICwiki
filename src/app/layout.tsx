@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Sans } from "next/font/google";
+import { Fraunces, IBM_Plex_Sans, Share_Tech_Mono, Zen_Dots } from "next/font/google";
 import "./globals.css";
 
 const headingFont = Fraunces({
@@ -11,6 +11,18 @@ const bodyFont = IBM_Plex_Sans({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+const shareTechMono = Share_Tech_Mono({
+  variable: "--font-share-tech-mono",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const zenDots = Zen_Dots({
+  variable: "--font-zen-dots",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +37,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
+      <body
+        className={`${headingFont.variable} ${bodyFont.variable} ${shareTechMono.variable} ${zenDots.variable} antialiased`}
+      >
         {children}
       </body>
     </html>
